@@ -28,19 +28,19 @@ export class RemoteConfigService implements OnModuleInit {
 
     const remoteConfig = app.remoteConfig();
 
-    setInterval(async () => {
-      const serverTemplate = await remoteConfig.getServerTemplate();
-      const serverConfig = serverTemplate.evaluate();
+    const serverTemplate = await remoteConfig.getServerTemplate();
+    const serverConfig = serverTemplate.evaluate({
+      version: '0.0.2',
+    });
 
-      const stringValue = serverConfig.getString('string_value');
-      const boolValue = serverConfig.getBoolean('boolean_value');
-      const numberValue = serverConfig.getNumber('number_value');
-      const jsonValue = serverConfig.getValue('json_value').asString();
+    const stringValue = serverConfig.getString('string_value');
+    const boolValue = serverConfig.getBoolean('boolean_value');
+    const numberValue = serverConfig.getNumber('number_value');
+    const jsonValue = serverConfig.getValue('json_value').asString();
 
-      console.log('stringValue:  ', stringValue);
-      console.log('boolValue:  ', boolValue);
-      console.log('numberValue:  ', numberValue);
-      console.log('jsonValue:  ', jsonValue);
-    }, 5000);
+    console.log('stringValue:  ', stringValue);
+    console.log('boolValue:  ', boolValue);
+    console.log('numberValue:  ', numberValue);
+    console.log('jsonValue:  ', jsonValue);
   }
 }
